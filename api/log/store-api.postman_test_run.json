@@ -1,0 +1,758 @@
+{
+	"id": "d210830b-df62-4749-8ec0-d10368a11717",
+	"name": "store-api",
+	"timestamp": "2022-05-14T00:26:46.192Z",
+	"collection_id": "20961892-ee536ab1-ec29-4420-b617-6ecea67125e4",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 36,
+	"totalFail": 4,
+	"results": [
+		{
+			"id": "1c8c1b93-0dd9-4cb7-92e5-5ba0114720e9",
+			"name": "empty products list",
+			"url": "http://localhost:8000/produtos/",
+			"time": 20,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"empty list": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"empty list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				20
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"empty list": true
+				}
+			]
+		},
+		{
+			"id": "722590b7-c2ad-4f1d-b7d4-79cc83998216",
+			"name": "simple add product",
+			"url": "http://localhost:8000/produtos/",
+			"time": 138,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"product is added": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"product is added": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				138
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"product is added": true
+				}
+			]
+		},
+		{
+			"id": "6bb2b5a9-6abe-4c4f-9b0c-37ffbfbf806b",
+			"name": "only required data",
+			"url": "http://localhost:8000/produtos/",
+			"time": 47,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"product is added": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"product is added": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				47
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"product is added": true
+				}
+			]
+		},
+		{
+			"id": "90dcb10b-1a76-476a-860e-58939668df8f",
+			"name": "list products",
+			"url": "http://localhost:8000/produtos/",
+			"time": 20,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"list have two products": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"list have two products": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				20
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"list have two products": true
+				}
+			]
+		},
+		{
+			"id": "e341c4d7-b82d-4267-bcc4-c58d871e8139",
+			"name": "'nome' is required",
+			"url": "http://localhost:8000/produtos/",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"alert field required": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert field required": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"alert field required": true
+				}
+			]
+		},
+		{
+			"id": "a111f3b3-804a-4f22-89bf-0e3e4371ccff",
+			"name": "'nome' cant be blank",
+			"url": "http://localhost:8000/produtos/",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"alert field blank": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert field blank": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"alert field blank": true
+				}
+			]
+		},
+		{
+			"id": "6846d62f-81a3-4e87-959b-dbf31bef2c3d",
+			"name": "'preço' is required",
+			"url": "http://localhost:8000/produtos/",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"alert field required": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert field required": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"alert field required": true
+				}
+			]
+		},
+		{
+			"id": "da647a3c-721e-4873-99fa-2e42e6b7934c",
+			"name": "'preço' cant be blank",
+			"url": "http://localhost:8000/produtos/",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"alert field blank": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert field blank": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"alert field blank": true
+				}
+			]
+		},
+		{
+			"id": "e6276cb0-000c-4341-af54-f984a45d165c",
+			"name": "'produto' found",
+			"url": "http://localhost:8000/produtos/",
+			"time": 18,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"produt found": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"produt found": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				18
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"produt found": true
+				}
+			]
+		},
+		{
+			"id": "10333d3c-621a-4e23-a4bb-32ebe6f2c6da",
+			"name": "'produto' not found",
+			"url": "http://localhost:8000/produtos/11/",
+			"time": 15,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Not found": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Not found": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Not found": true
+				}
+			]
+		},
+		{
+			"id": "7e8d27ee-e727-4f64-b6b8-cb4c31deba07",
+			"name": "'quantidade' dont inserted",
+			"url": "http://localhost:8000/produtos/",
+			"time": 48,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"product is added": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"product is added": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				48
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"product is added": true
+				}
+			]
+		},
+		{
+			"id": "88521c00-f375-4d35-8e53-f2c9c459002a",
+			"name": "'categoria' dont inserted",
+			"url": "http://localhost:8000/produtos/",
+			"time": 63,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"product is added": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"product is added": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				63
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"product is added": true
+				}
+			]
+		},
+		{
+			"id": "834d54a5-3e03-4921-b8bb-36e462558346",
+			"name": "'preço' with letters",
+			"url": "http://localhost:8000/produtos/",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"alert letters is invalid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert letters is invalid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"alert letters is invalid": true
+				}
+			]
+		},
+		{
+			"id": "1fd18861-f35a-4982-8dc5-d22f819913b2",
+			"name": "'preço' with less number",
+			"url": "http://localhost:8000/produtos/",
+			"time": 45,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 400": false,
+				"alert less number is invalid": false
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 0,
+					"fail": 1
+				},
+				"alert less number is invalid": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				45
+			],
+			"allTests": [
+				{
+					"Status code is 400": false,
+					"alert less number is invalid": false
+				}
+			]
+		},
+		{
+			"id": "cc79d94d-afcd-4126-bf78-09bfc1164cf6",
+			"name": "'quantidade' with less number",
+			"url": "http://localhost:8000/produtos/",
+			"time": 51,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 400": false,
+				"alert less number is invalid": false
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 0,
+					"fail": 1
+				},
+				"alert less number is invalid": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				51
+			],
+			"allTests": [
+				{
+					"Status code is 400": false,
+					"alert less number is invalid": false
+				}
+			]
+		},
+		{
+			"id": "c7082e83-c663-4397-bd6c-1cfc90e7675a",
+			"name": "'quantidade' with float number",
+			"url": "http://localhost:8000/produtos/",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"alert float number is invalid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert float number is invalid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"alert float number is invalid": true
+				}
+			]
+		},
+		{
+			"id": "fe4029f2-b845-48ab-a491-cf3beba4dae9",
+			"name": "'categoria' with lower limit invalid",
+			"url": "http://localhost:8000/produtos/",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"alert lower limit invalid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert lower limit invalid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"alert lower limit invalid": true
+				}
+			]
+		},
+		{
+			"id": "e08b4ae9-fe3a-4340-9fa8-833d1d878983",
+			"name": "'categoria' with lower limit valid",
+			"url": "http://localhost:8000/produtos/",
+			"time": 59,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"alert lower limit valid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert lower limit valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				59
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"alert lower limit valid": true
+				}
+			]
+		},
+		{
+			"id": "9065dfd3-4a3b-4016-ab96-c4d5dc65ded9",
+			"name": "'categoria' with up limit valid",
+			"url": "http://localhost:8000/produtos/",
+			"time": 51,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"alert up limit valid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert up limit valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				51
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"alert up limit valid": true
+				}
+			]
+		},
+		{
+			"id": "b2ba8513-74ed-48e2-9ed5-27a04aac3fcf",
+			"name": "'categoria' with up limit invalid",
+			"url": "http://localhost:8000/produtos/",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"alert lower limit invalid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"alert lower limit invalid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"alert lower limit invalid": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 634,
+	"collection": {
+		"requests": [
+			{
+				"id": "1c8c1b93-0dd9-4cb7-92e5-5ba0114720e9",
+				"method": "GET"
+			},
+			{
+				"id": "722590b7-c2ad-4f1d-b7d4-79cc83998216",
+				"method": "POST"
+			},
+			{
+				"id": "6bb2b5a9-6abe-4c4f-9b0c-37ffbfbf806b",
+				"method": "POST"
+			},
+			{
+				"id": "90dcb10b-1a76-476a-860e-58939668df8f",
+				"method": "GET"
+			},
+			{
+				"id": "e341c4d7-b82d-4267-bcc4-c58d871e8139",
+				"method": "POST"
+			},
+			{
+				"id": "a111f3b3-804a-4f22-89bf-0e3e4371ccff",
+				"method": "POST"
+			},
+			{
+				"id": "6846d62f-81a3-4e87-959b-dbf31bef2c3d",
+				"method": "POST"
+			},
+			{
+				"id": "da647a3c-721e-4873-99fa-2e42e6b7934c",
+				"method": "POST"
+			},
+			{
+				"id": "e6276cb0-000c-4341-af54-f984a45d165c",
+				"method": "GET"
+			},
+			{
+				"id": "10333d3c-621a-4e23-a4bb-32ebe6f2c6da",
+				"method": "GET"
+			},
+			{
+				"id": "7e8d27ee-e727-4f64-b6b8-cb4c31deba07",
+				"method": "POST"
+			},
+			{
+				"id": "88521c00-f375-4d35-8e53-f2c9c459002a",
+				"method": "POST"
+			},
+			{
+				"id": "834d54a5-3e03-4921-b8bb-36e462558346",
+				"method": "POST"
+			},
+			{
+				"id": "1fd18861-f35a-4982-8dc5-d22f819913b2",
+				"method": "POST"
+			},
+			{
+				"id": "cc79d94d-afcd-4126-bf78-09bfc1164cf6",
+				"method": "POST"
+			},
+			{
+				"id": "c7082e83-c663-4397-bd6c-1cfc90e7675a",
+				"method": "POST"
+			},
+			{
+				"id": "fe4029f2-b845-48ab-a491-cf3beba4dae9",
+				"method": "POST"
+			},
+			{
+				"id": "e08b4ae9-fe3a-4340-9fa8-833d1d878983",
+				"method": "POST"
+			},
+			{
+				"id": "9065dfd3-4a3b-4016-ab96-c4d5dc65ded9",
+				"method": "POST"
+			},
+			{
+				"id": "b2ba8513-74ed-48e2-9ed5-27a04aac3fcf",
+				"method": "POST"
+			}
+		]
+	}
+}

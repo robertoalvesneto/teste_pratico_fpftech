@@ -1,0 +1,978 @@
+{
+	"info": {
+		"_postman_id": "ee536ab1-ec29-4420-b617-6ecea67125e4",
+		"name": "store-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "empty products list",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () =>",
+							"    pm.response.to.have.status(200));",
+							"",
+							"const response1 = pm.response.json();",
+							"pm.test(\"empty list\", () =>",
+							"    pm.expect(response1).to.eql([]));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "simple add product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", () =>",
+							"    pm.response.to.have.status(201));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = {",
+							"    \"nome\": \"test 1\",",
+							"    \"preco\": \"3.00\",",
+							"    \"quantidade\": 1,",
+							"    \"categoria\": 1",
+							"};",
+							"",
+							"pm.test(\"product is added\", () =>",
+							"    pm.expect(response).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 1\",\n    \"preco\": \"3.0\",\n    \"quantidade\": 1,\n    \"categoria\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "only required data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", () =>",
+							"    pm.response.to.have.status(201));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = {",
+							"    \"nome\": \"test 2\",",
+							"    \"preco\": \"3.00\",",
+							"    \"quantidade\": 1,",
+							"    \"categoria\": 1",
+							"};",
+							"",
+							"pm.test(\"product is added\", () =>",
+							"    pm.expect(response).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 2\",\n    \"preco\": \"3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list products",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () =>",
+							"    pm.response.to.have.status(200));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = [",
+							"    {",
+							"        \"nome\": \"test 1\",",
+							"        \"preco\": \"3.00\",",
+							"        \"quantidade\": 1,",
+							"        \"categoria\": 1",
+							"    },",
+							"    {",
+							"        \"nome\": \"test 2\",",
+							"        \"preco\": \"3.00\",",
+							"        \"quantidade\": 1,",
+							"        \"categoria\": 1",
+							"    }",
+							"];",
+							"",
+							"pm.test(\"list have two products\", () =>",
+							"    pm.expect(response).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'nome' is required",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponseRequired = \"This field is required.\";",
+							"",
+							"pm.test(\"alert field required\", () =>",
+							"    pm.expect(response.nome[0]).to.eql(expectedResponseRequired));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"preco\": \"3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'nome' cant be blank",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponseBlank = \"This field may not be blank.\";",
+							"",
+							"pm.test(\"alert field blank\", () =>",
+							"    pm.expect(response.nome[0]).to.eql(expectedResponseBlank));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"\",\n    \"preco\": \"3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'preço' is required",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponseRequired = \"This field is required.\";",
+							"",
+							"pm.test(\"alert field required\", () =>",
+							"    pm.expect(response.preco[0]).to.eql(expectedResponseRequired));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 7\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'preço' cant be blank",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponseBlank = \"A valid number is required.\";",
+							"",
+							"pm.test(\"alert field blank\", () =>",
+							"    pm.expect(response.preco[0]).to.eql(expectedResponseBlank));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 8\",\n    \"preco\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'produto' found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () =>",
+							"    pm.response.to.have.status(200));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = [",
+							"    {",
+							"        \"nome\": \"test 1\",",
+							"        \"preco\": \"3.00\",",
+							"        \"quantidade\": 1,",
+							"        \"categoria\": 1",
+							"    },",
+							"    {",
+							"        \"nome\": \"test 2\",",
+							"        \"preco\": \"3.00\",",
+							"        \"quantidade\": 1,",
+							"        \"categoria\": 1",
+							"    }",
+							"];",
+							"",
+							"pm.test(\"produt found\", () =>",
+							"    pm.expect(response).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'produto' not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", () =>",
+							"    pm.response.to.have.status(404));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponseNotFound = \"Not found.\";",
+							"",
+							"pm.test(\"Not found\", () =>",
+							"    pm.expect(response.detail).to.eql(expectedResponseNotFound));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/produtos/11/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						"11",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'quantidade' dont inserted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", () =>",
+							"    pm.response.to.have.status(201));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = {",
+							"    \"nome\": \"test 11\",",
+							"    \"preco\": \"3.00\",",
+							"    \"quantidade\": 1,",
+							"    \"categoria\": 1",
+							"};",
+							"",
+							"pm.test(\"product is added\", () =>",
+							"    pm.expect(response).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 11\",\n    \"preco\": \"3.0\",\n    \"categoria\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'categoria' dont inserted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", () =>",
+							"    pm.response.to.have.status(201));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = {",
+							"    \"nome\": \"test 12\",",
+							"    \"preco\": \"3.00\",",
+							"    \"quantidade\": 1,",
+							"    \"categoria\": 1",
+							"};",
+							"",
+							"pm.test(\"product is added\", () =>",
+							"    pm.expect(response).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 12\",\n    \"preco\": \"3.0\",\n    \"quantidade\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'preço' with letters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = \"A valid number is required.\";",
+							"",
+							"pm.test(\"alert letters is invalid\", () =>",
+							"    pm.expect(response.preco[0]).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 13\",\n    \"preco\": \"aa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'preço' with less number",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = \"A valid number is required.\";",
+							"",
+							"pm.test(\"alert less number is invalid\", () =>",
+							"    pm.expect(response.preco[0]).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 14\",\n    \"preco\": -12\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'quantidade' with less number",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = \"A valid number is required.\";",
+							"",
+							"pm.test(\"alert less number is invalid\", () =>",
+							"    pm.expect(response.quantidade[0]).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 15\",\n    \"preco\": 12,\n    \"quantidade\": -1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'quantidade' with float number",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = \"A valid integer is required.\";",
+							"",
+							"pm.test(\"alert float number is invalid\", () =>",
+							"    pm.expect(response.quantidade[0]).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 16\",\n    \"preco\": 12,\n    \"quantidade\": 1.1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'categoria' with lower limit invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = \"\\\"0\\\" is not a valid choice.\";",
+							"",
+							"pm.test(\"alert lower limit invalid\", () =>",
+							"    pm.expect(response.categoria[0]).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 17\",\n    \"preco\": 12,\n    \"categoria\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'categoria' with lower limit valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", () =>",
+							"    pm.response.to.have.status(201));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = {",
+							"    \"nome\": \"test 18\",",
+							"    \"preco\": \"12.00\",",
+							"    \"quantidade\": 1,",
+							"    \"categoria\": 1",
+							"};",
+							"",
+							"pm.test(\"alert lower limit valid\", () =>",
+							"    pm.expect(response).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 18\",\n    \"preco\": 12,\n    \"categoria\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'categoria' with up limit valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", () =>",
+							"    pm.response.to.have.status(201));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = {",
+							"    \"nome\": \"test 19\",",
+							"    \"preco\": \"12.00\",",
+							"    \"quantidade\": 1,",
+							"    \"categoria\": 10",
+							"};",
+							"",
+							"pm.test(\"alert up limit valid\", () =>",
+							"    pm.expect(response).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 19\",\n    \"preco\": 12,\n    \"categoria\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'categoria' with up limit invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", () =>",
+							"    pm.response.to.have.status(400));",
+							"",
+							"const response = pm.response.json();",
+							"const expectedResponse = \"\\\"11\\\" is not a valid choice.\";",
+							"",
+							"pm.test(\"alert lower limit invalid\", () =>",
+							"    pm.expect(response.categoria[0]).to.eql(expectedResponse));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"test 19\",\n    \"preco\": 12,\n    \"categoria\": 11\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/produtos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:8000"
+		}
+	]
+}
